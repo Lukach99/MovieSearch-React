@@ -1,25 +1,22 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Header from '../components/Header';
 import Test from '../components/test';
 
 import './App.scss';
+import InfoPage from './InfoPage';
 
 function App() {
   return (
     <div className="App">
-      <Test></Test>
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header></Header>
+      <Routes>
+      <Route path='*' element={<Test />}></Route>
+      <Route path="/info/:id" element={<InfoPage />} />
+
+      </Routes>
+      
+      
     </div>
   );
 }

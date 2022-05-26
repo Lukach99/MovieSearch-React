@@ -30,7 +30,7 @@ const Test = () => {
     
 
     return <section className="item-list">
-        {data.map(({title, poster_path,id}: any) => <ItemCard key={id} name={title} imgSrc={poster_path}></ItemCard>)}
+        {data.map(({title, poster_path,id}: any) => <ItemCard key={id} id={id} name={title} imgSrc={poster_path}></ItemCard>)}
         
     </section>
  }
