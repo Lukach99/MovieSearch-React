@@ -6,7 +6,7 @@ import HttpClient from "./generic.http";
 class InfoData extends HttpClient{
     
     constructor(){
-        super(API_KEY, BASE_URL)
+        super(BASE_URL, API_KEY )
     }
 
     public async getMovies(query: string): Promise<object[]>{
@@ -14,6 +14,11 @@ class InfoData extends HttpClient{
 
         const fetchedInfo: object[]= data.results.map((item: object) => item )
         return fetchedInfo
+    }
+
+    public async getMovieInfo(id: string | undefined): Promise<object>{
+        const data:any = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${this._apiKey}&language=en-US`)
+        return data.data
     }
 }
 

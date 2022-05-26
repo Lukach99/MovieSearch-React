@@ -1,0 +1,14 @@
+.info{
+    padding: 0 10%;
+
+    .info-data{
+
+        &__img{
+            width: 100%;
+            img{
+                width: inherit;
+                object-fit: cover;
+            }
+        }
+    }
+}
