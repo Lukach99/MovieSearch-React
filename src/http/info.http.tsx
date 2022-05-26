@@ -4,17 +4,15 @@ import HttpClient from "./generic.http";
 
 
 class InfoData extends HttpClient{
-    static getMovies() {
-        throw new Error("Method not implemented.");
-    }
+    
     constructor(){
         super(API_KEY, BASE_URL)
     }
 
-    public async getMovies(query: string): Promise<any>{
+    public async getMovies(query: string): Promise<object[]>{
         const {data} = await axios.get(query);
 
-        const fetchedInfo: any[] = data.results.map((item: any) => item )
+        const fetchedInfo: object[]= data.results.map((item: object) => item )
         return fetchedInfo
     }
 }
