@@ -1,33 +1,36 @@
 import "./index.scss"
 
-import { useParams } from "react-router-dom";
-import InfoData from "../../http/info.http";
+import { Link, useParams } from "react-router-dom";
+import InfoDataHttp from "../../http/info.http";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 const InfoPage = () => { 
-    const { id } = useParams();
+    const { type, id } = useParams();
     const [data, setData] = useState<any>({})
-    console.log(id)
+    console.log({typeMed: type, idn:id})
+    
+    
 
-    const infoHttp = useMemo(() => new InfoData, []) 
+    const infoDataHttp = useMemo(() => new InfoDataHttp, []) 
 
     const fetchInfo = useCallback(
-        async (id:string | undefined) => { 
-            const infoData = await infoHttp.getMovieInfo(id)
+        async (type:string | undefined, id:string | undefined) => { 
+            const infoData = await infoDataHttp.getMediaInfo(type,id)
             setData(infoData)
-         },[infoHttp])
+         },[infoDataHttp])
 
     useEffect(() => {
-      fetchInfo(id)
+      fetchInfo(type, id)
     
       }
-    , [fetchInfo, id]);
+    , [fetchInfo, id, type]);
     
 console.log(data);
 
     return <section className="info"> 
     <article className="info-data">
-        <h1>{data.title}</h1>
+        <Link to="/">go back</Link>
+        <h1>{data.title || data.name}</h1>
         <div className="info-data__img">
             <img src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`} alt="" />
         </div>
