@@ -33,21 +33,41 @@ const Test = () => {
      
 
     const moveLeft = () => {
-      console.log(move.current)
+      
       if(move.current < 0){
-        move.current += carousel.current?.clientWidth
-        ref.current.style.left = `${move.current}px`
-      }
+        if((-100 < (move.current + carousel.current?.clientWidth)) && ((move.current + carousel.current?.clientWidth) < 0)){
+          console.log("work")
+          move.current = 0
+          ref.current.style.left = `${move.current}px`
+        } else{
+          move.current += carousel.current?.clientWidth
+          ref.current.style.left = `${move.current}px`
+          console.log(move.current)
+        }
+        
+      }  else{ 
+
+        
+          move.current = ((0 - ref.current?.clientWidth) + carousel.current?.clientWidth)
+          ref.current.style.left = `${move.current}px`
+          console.log(move.current)
+        
+        
+       } 
       
       
      
     }
 
     const moveRight = () => {
-      console.log(move.current - carousel.current?.clientWidth)
-      console.log(0 - ref.current?.clientWidth)
+      
+      
       if((move.current - carousel.current?.clientWidth - 100) > (0 - ref.current?.clientWidth) ){
         move.current -= carousel.current?.clientWidth
+        ref.current.style.left = `${move.current}px`
+        console.log(move.current)
+      } else{
+        move.current = 0
         ref.current.style.left = `${move.current}px`
         console.log(move.current)
       }
